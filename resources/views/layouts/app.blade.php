@@ -13,6 +13,14 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{-- Alpine js --}}
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.1/dist/cdn.min.js"></script>
+        {{-- Font awesome --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {{-- Sweet alert --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -29,8 +37,21 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <div
+                class="flex h-[calc(100vh-65px)] bg-sky-300"
+                x-data="{ sidebarOpen: false }"
+                >
+                @include('layouts.sidebar')
+                {{-- Contenido --}}
+                <div class="flex flex-1 flex-col overflow-hidden bg-gray-100 py-3 px-6">
+                    {{ $slot }}
+                </div>
+              </div>
             </main>
         </div>
+        {{-- Scripts --}}
+        {{-- Jquery --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        @stack('script')
     </body>
 </html>
