@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\ProfileController;
@@ -36,5 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/categories', CategoryController::class);
     Route::resource('/movements', MovementController::class);
     Route::resource('/items', ItemController::class);
+    Route::resource('/invoices', InvoiceController::class);
 });
 require __DIR__ . '/auth.php';

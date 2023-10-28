@@ -32,7 +32,12 @@
               class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
               <i class="fa-solid fa-box" style="color: #8c8c8c;"></i>
               <span class="text-sm">Inventario</span>
-          </a>
+            </a>
+            <a href="{{ route('invoices.index') }}"
+                class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
+                <i class="fa-solid fa-ticket" style="color: #8c8c8c;"></i>
+                <span class="text-sm">Facturas</span>
+            </a>
 
               <div class="px-4 py-2" x-data="{ open: false }">
                   <p class="cursor-pointer text-sm" @click="open=!open">
