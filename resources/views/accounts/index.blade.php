@@ -9,7 +9,13 @@
       class="rounded-md bg-green-400 px-6 py-2 text-white hover:bg-green-700"
     >Agregar Banco</a>
   </div>
-
+  <section class="mb-4">
+    <div class="bg-white p-3 shadow-md">
+      <p>Saldo en banco y efectivo</p>
+      <p class="text-3xl font-bold {{ intval($total) > 0 ? 'text-teal-500' : 'text-red-400' }}">S./ {{ $total }}</p>
+        <p class="text-teal-500"> Última actualización <span class="font-bold">{{ $latestUpdate }}</span></p>
+    </div>
+  </section>
   <table class="w-full table-auto">
     <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
       <tr class="text-left">
@@ -26,8 +32,12 @@
           <td class="p-3">{{ $account->name }}</td>
           <td class="p-3">{{ $account->type }}</td>
           <td class="p-3">{{ $account->number }}</td>
-          <td class="p-3">S/ {{ $account->amount }}</td>
+          <td class="p-3 {{ intval($account->amount) > 0 ? 'text-green-400' : 'text-red-400'  }}">S/ {{ $account->amount }}</td>
           <td class="flex gap-5 p-3">
+            <a href="{{ route('accounts.show',$account) }}"><i
+              class="fa-solid fa-eye"
+              style="color: #878787;"
+            ></i></a>
             <a href="{{ route('accounts.edit',$account) }}"><i
                 class="fa-solid fa-pencil"
                 style="color: #878787;"

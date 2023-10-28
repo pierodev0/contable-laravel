@@ -19,18 +19,33 @@ class AccountSeeder extends Seeder
                 'type' => 'Banco nacional',
                 'number' => '123456789',
                 'amount' => 1000.00,
+                'user_id' => 1
             ],
             [
                 'name' => 'Tarjeta de Crédito Visa',
                 'type' => 'Tarjeta de credito',
                 'number' => '987654321',
-                'amount' => 500.00,
+                'amount' => 1000.00,
+                'user_id' => 1
             ],
             [
                 'name' => 'Efectivo en Mano',
                 'type' => 'Efectivo',
                 'number' => '000000001',
-                'amount' => 200.00,
+                'amount' => 1000.00,
+                'user_id' => 1
+            ],
+            [
+                'name' => 'Caja general',
+                'type' => 'Efectivo',
+                'amount' => 1000.00,
+                'user_id' => 1
+            ],
+            [
+                'name' => 'Caja chica',
+                'type' => 'Efectivo',
+                'amount' => 1000.00,
+                'user_id' => 1
             ],
 
 

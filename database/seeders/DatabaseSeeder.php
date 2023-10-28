@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Movement;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +24,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AccountSeeder::class,
-            ClientSeeder::class
+            ClientSeeder::class,
+            CategorySeeder::class,
+            ItemSeeder::class,
         ]);
+
+        // Movement::factory(20)->create();
     }
 }

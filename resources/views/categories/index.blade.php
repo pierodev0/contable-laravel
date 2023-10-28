@@ -1,32 +1,30 @@
 <x-app-layout>
     <div class="mb-10 flex items-start justify-between">
         <div class="">
-            <h1 class="text-3xl">Clientes</h1>
-            <h2>Crea los contactos que asociarás en tus documentos y transacciones de ingresos.</h2>
+            <h1 class="text-3xl">Categorias</h1>
+            <h2>Crea las categorias para tus gastos o ingresos</h2>
         </div>
-        <a href="{{ route('clients.create') }}"
-            class="rounded-md bg-green-400 px-6 py-2 text-white hover:bg-green-700">Agregar cliente</a>
+        <a href="{{ route('categories.create') }}"
+            class="rounded-md bg-green-400 px-6 py-2 text-white hover:bg-green-700">Agregar categorias</a>
     </div>
 
     <table class="w-full table-auto">
         <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
             <tr class="text-left">
-                <th class="p-3 text-blue-900">Razon social o nombre completo</th>
-                <th class="p-3 text-blue-900">Identificacion</th>
-                <th class="p-3 text-blue-900">Telefono</th>
+                <th class="p-3 text-blue-900">ID</th>
+                <th class="p-3 text-blue-900">Nombre</th>
                 <th class="p-3 text-blue-900">Acciones</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-100 bg-white text-sm">
-            @forelse ($clients as $client)
+            @forelse ($categories as $category)
                 <tr class="hover:bg-gray-200">
-                    <td class="p-3">{{ $client->name }}</td>
-                    <td class="p-3">{{ $client->number }}</td>
-                    <td class="p-3">{{ $client->phone }}</td>
+                    <td class="p-3">{{ $category->id }}</td>
+                    <td class="p-3">{{ $category->name }}</td>
                     <td class="flex gap-5 p-3">
-                        <a href="{{ route('clients.edit', $client) }}"><i class="fa-solid fa-pencil"
+                        <a href="{{ route('categories.edit', $category) }}"><i class="fa-solid fa-pencil"
                                 style="color: #878787;"></i></a>
-                        <form class="formDelete" action="{{ route('clients.destroy', $client) }}" method="POST">
+                        <form class="formDelete" action="{{ route('categories.destroy', $category) }}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit"><i class="fa-solid fa-x" style="color: #878787;"></i></button>

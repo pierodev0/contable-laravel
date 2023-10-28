@@ -43,7 +43,7 @@
                 >
                 @include('layouts.sidebar')
                 {{-- Contenido --}}
-                <div class="flex flex-1 flex-col overflow-hidden bg-gray-100 py-3 px-6">
+                <div class="flex flex-1 flex-col bg-gray-100 py-3 px-6 overflow-scroll">
                     {{ $slot }}
                 </div>
               </div>

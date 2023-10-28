@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['Banco nacional', 'Tarjeta de credito', 'Efectivo']);
-            $table->string('number')->nullable()->unique();
-            $table->decimal('amount', 10, 2);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->enum('type', ['product', 'service']);
+            $table->string('unit')->nullable();
+            $table->integer('stock')->nullable();
+            $table->decimal('sell_price', 12, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('items');
     }
 };
