@@ -70,7 +70,12 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        $subtotal = 0 ;
+        $invoiceDetails = $invoice->invoiceDetails;
+        foreach ($invoiceDetails as $invoiceDetail) {
+            $subtotal += $invoiceDetail->quantity*$invoiceDetail->price;
+        }
+        return view('invoices.show', compact('invoice','invoiceDetails','subtotal'));
     }
 
     /**
@@ -94,6 +99,12 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+       
+        if ($invoice->status == 'Por cobrar') {
+            $invoice->update(['status'=>'Anulada']);
+            return redirect()->back()->with('success','Factura anulada');
+        }
+        
+        return redirect()->back();
     }
 }
