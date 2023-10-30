@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-
-            $table->string('number')->unique();
-            $table->enum('type', ['DNI', 'RUC']);
             $table->string('name');
+            $table->string('dni')->unique()->nullable();
+            $table->string('ruc')->unique()->nullable();
             $table->string('direction')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

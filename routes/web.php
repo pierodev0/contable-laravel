@@ -35,7 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('/accounts', AccountController::class);
     Route::resource('/clients', ClientController::class);
     Route::resource('/categories', CategoryController::class);
-    Route::resource('/movements', MovementController::class);
+    // Route::resource('/movements', MovementController::class);
+    Route::get('/movements', [MovementController::class, 'index'])->name('movements.index');
+    Route::get('/movements/create/{invoice?}', [MovementController::class, 'create'])->name('movements.create');
+    Route::post('/movements', [MovementController::class, 'store'])->name('movements.store');
+    Route::get('/movements/{movement}', [MovementController::class, 'show'])->name('movements.show');
+    Route::get('/movements/{movement}/edit', [MovementController::class, 'edit'])->name('movements.edit');
+    Route::put('/movements/{movement}', [MovementController::class, 'update'])->name('movements.update');
+    Route::delete('/movements/{movement}', [MovementController::class, 'destroy'])->name('movements.destroy');
+
     Route::resource('/items', ItemController::class);
     Route::resource('/invoices', InvoiceController::class);
 });

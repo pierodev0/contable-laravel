@@ -9,7 +9,7 @@
               <a href="{{ route('clients.index') }}"
                   class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
                   <i class="fa-regular fa-user" style="color: #8c8c8c;"></i>
-                  <span class="text-sm">Contactos</span>
+                  <span class="text-sm">Clientes</span>
               </a>
 
               <a href="{{ route('accounts.index') }}"
@@ -25,7 +25,7 @@
 
               <a href="{{ route('movements.index') }}"
                   class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
-                  <i class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>
+                  <i class="fa-solid fa-money-bill" style="color: #8c8c8c;"></i>
                   <span class="text-sm">Movimientos</span>
               </a>
               <a href="{{ route('items.index') }}"
@@ -39,7 +39,7 @@
                 <span class="text-sm">Facturas</span>
             </a>
 
-              <div class="px-4 py-2" x-data="{ open: false }">
+              {{-- <div class="px-4 py-2" x-data="{ open: false }">
                   <p class="cursor-pointer text-sm" @click="open=!open">
                       <i class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>
                       <span class="">Test</span>
@@ -50,7 +50,7 @@
                       <a href="" class="hover:bg-gray-100 p-1 flex gap-2 items-center"> <i
                               class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>Gastos</a>
                   </ul>
-              </div>
+              </div> --}}
 
 
               <p class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">

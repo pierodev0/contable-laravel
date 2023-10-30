@@ -48,18 +48,17 @@ class InvoiceController extends Controller
     public function store(StoreInvoiceRequest $request)
     {
 
-        $invoice = Invoice::create($request->all()+[            
-            'invoice_date'=>Carbon::now('America/Lima'),
-        ]);
-
+        $invoice = Invoice::create($request->all());
        
-        foreach ($request->item_id as $key => $product) {
+       
+        foreach ($request->item_id as $key => $item) {
             $results[] = [
                 "item_id" => $request->item_id[$key],
                 "quantity" => $request->quantity[$key],
                 "price" => $request->price[$key],
             ];
         }
+
         $invoice->invoiceDetails()->createMany($results);
 
         return redirect()->route('invoices.index');

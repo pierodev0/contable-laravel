@@ -1,38 +1,9 @@
 <div class="p-4 flex justify-between">
     <h1 class="font-bold text-3xl">JHARDSYSTEX</h1>
-    <p class="font-bold">N 0004</p>
+    <p class="font-bold">Factura electronica</p>
 </div>
-<div class="flex gap-4">
-    {{-- <div class="flex flex-col gap-2 items-end flex-1">
-        <label class="flex gap-3 items-center w-full">
-            <span class="w-1/3 text-right">Contacto</span>
-            <input type="text" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1">
-        </label>
-        <label class="flex gap-3 items-center w-full">
-            <span class="w-1/3 text-right">Identificacion</span>
-            <input type="number" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1">
-        </label>
-        <label class="flex gap-3 items-center w-full">
-            <span class="w-1/3 text-right">Telefono</span>
-            <input type="number" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1">
-        </label>
-    </div>
-    <div class="flex flex-col gap-2 items-end flex-1">
-        <label class="flex gap-3 items-center w-full">
-            <span class="w-1/3 text-right">Fecha</span>
-            <input type="date" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1">
-        </label>
-        <label class="flex gap-3 items-center w-full">
-            <span class="w-1/3 text-right">Plazo de pago</span>
-            <input type="date" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1">
-        </label>
-        <label class="flex gap-3 items-center w-full">
-            <span class="w-1/3 text-right">Vencimiento</span>
-            <input type="date" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1">
-        </label>
-    </div> --}}
-
-    <label class="flex flex-col gap-1 flex-grow-[2]">
+<div class="flex gap-4">   
+    <label class="flex flex-col gap-1  grow-[2]">
         <span class="">Cliente</span>
         <select name="client_id" class="py-0.5 px-2 rounded-md border-gray-500/50 w-full" id="client_id">
             @foreach ($clients as $client)
@@ -41,7 +12,17 @@
         </select>
     </label>
     <label class="flex flex-col gap-1 flex-1">
-        <span class="">Impuesto</span>
+        <span class="">Fecha</span>
+        <input type="date" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1" name="create_date"
+            id="create_date" value="{{ \Carbon\Carbon::now('America/Lima')->toDateString() }}">
+    </label>
+    <label class="flex flex-col gap-1 flex-1">
+        <span class="">Vencimiento</span>
+        <input type="date" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1" name="due_date"
+            id="due_date" value="{{ \Carbon\Carbon::now('America/Lima')->toDateString() }}">
+    </label>
+    <label class="flex flex-col gap-1 flex-1">
+        <span class="">IGV %</span>
         <input type="number" class="text-sm py-0.5 px-2 rounded-md border-gray-500/50 flex-1" name="tax"
             id="tax" value="18">
     </label>
@@ -50,9 +31,9 @@
     <label class="flex flex-col gap-1 w-3/6">
         <span class="">Item</span>
         <select name="" class="py-0.5 px-2 rounded-md border-gray-500/50 w-full" id="item_id1">
-            <option value="" disabled selected>Selecccione un producto</option>
+            <option value="" disabled selected>Selecccione un item</option>
             @foreach ($items as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                <option value="{{ $item->id }}" data-item="{{ $item->stock }}_{{ $item->sell_price }}">{{ $item->name }}</option>
             @endforeach
         </select>
     </label>
@@ -114,6 +95,19 @@
             $('#tax').on('input', getImpuesto)
         })
 
+        $('#item_id1').change(function(e) {
+            // var selectedOption = $(this).find('option:selected');
+            var selectedOption = $('#item_id1 :selected')
+            // console.log(selectedOption.data('item'))
+            var productoData = selectedOption.data('item');
+            var [stock, sell_price] = productoData.split('_');
+            console.log(stock,sell_price)
+            $('#price').val(sell_price);
+            $('#stock').val(stock);
+            $('#quantity').val(1);
+
+        });
+
 
         function agregar(e) {
             e.preventDefault();
@@ -132,11 +126,11 @@
                     <input type="hidden" name="item_id[]" value="${item_id}">
                     ${item}
                 </td>            
-                <td>
+                <td class="p-3">
                     <input type="hidden" id="price[]" name="price[]" value="${price}">
                     ${price}
                 </td>
-                <td>
+                <td class="p-3">
                     <input type="hidden" name="quantity[]" value="${quantity}">
                     ${quantity}
                 </td>        

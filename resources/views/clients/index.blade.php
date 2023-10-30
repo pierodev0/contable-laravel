@@ -21,7 +21,7 @@
             @forelse ($clients as $client)
                 <tr class="hover:bg-gray-200">
                     <td class="p-3">{{ $client->name }}</td>
-                    <td class="p-3">{{ $client->number }}</td>
+                    <td class="p-3">{{ $client->dni }}</td>
                     <td class="p-3">{{ $client->phone }}</td>
                     <td class="flex gap-5 p-3">
                         <a href="{{ route('clients.edit', $client) }}"><i class="fa-solid fa-pencil"

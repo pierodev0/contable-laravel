@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Client;
 use App\Models\Movement;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'name' => 'Piero Bayona',
+            'name' => 'Admin',
             'email' => 'cliente@gmail.com',
             'password' => bcrypt('12345678')
         ]);
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
         ]);
 
-        // Movement::factory(20)->create();
+        Client::factory(20)->create();
+        Movement::factory(10)->create();
     }
 }

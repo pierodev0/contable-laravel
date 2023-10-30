@@ -15,11 +15,14 @@
             <option value="out" {{ $movement->type == 'out' ? 'selected' : '' }}>Egresos</option>
         </select>
     </div>
+    @if ($invoice == null)
     <div class="flex flex-col">
         <label for="amount">Monto</label>
         <input type="number" id="amount" name="amount" class="rounded-md"
             value="{{ old('amount', $movement->amount) }}">
     </div>
+    @endif
+    
     <div class="flex flex-col">
         <label for="tax">Impuesto</label>
         <input type="number" id="tax" name="tax" class="rounded-md" value="{{ old('tax', $movement->tax) }}">
@@ -42,13 +45,48 @@
                     {{ $account->name }}</option>
             @endforeach
         </select>
-        <p>Saldo Actual: <span id="total"></span></p>
-    </div>
-    {{-- <div class="flex flex-col">
-        <label for="date">Fecha</label>
-        <input type="date" id="date" name="date" class="rounded-md" value="{{ old('date', $movement->date) }}">
-    </div> --}}
+        <p>Saldo Actual: <span id="total"></span></p>   
     <button class="w-full rounded-md bg-green-400 px-6 py-2 text-white">{{ $btnText }}</button>
+    @if ($invoice != null)
+    <table class="w-full table-auto">
+        <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
+            <tr class="text-left">
+                <th class="p-3 text-blue-900">ID</th>
+                <th class="p-3 text-blue-900">Fecha</th>
+                <th class="p-3 text-blue-900">Cliente</th>
+                <th class="p-3 text-blue-900">Total</th>
+                <th class="p-3 text-blue-900">Estado</th>
+                <th class="p-3 text-blue-900">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 bg-white text-sm">
+              @php
+                  $color['Por cobrar'] = "text-red-500";
+                  $color['Anulada'] = "text-blue-800";
+                  $color['Cobrada'] = "text-teal-500";
+              @endphp
+            
+               
+                <tr class="hover:bg-gray-200">
+                    <td class="p-3">{{ $invoice->invoice_code }}<input type="hidden" value="{{ $invoice->invoice_code }}" name="invoice_code"></td>
+                    <td class="p-3">{{ $invoice->invoice_date }}</td>
+                    <td class="p-3">{{ $invoice->client->name }}</td>
+                    <input type="hidden" value="{{ $invoice->total }}" name="amount">
+                    <td class="p-3">{{ $invoice->total }}</td>
+                    <td class="p-3 {{ $color[$invoice->status] }}">{{ $invoice->status }}</td>
+                    <td class="flex gap-5 p-3">
+                      <a href="{{ route('invoices.show', $invoice) }}"><i class="fa-solid fa-eye"
+                          style="color: #878787;"></i>
+                        </a>                                     
+                    </td>
+                </tr>
+              
+               
+            
+  
+        </tbody>
+    </table>
+    @endif
 @push('script')
 
 <script>

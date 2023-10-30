@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->datetime('invoice_date');
-            $table->decimal('tax')->nullable();
+            $table->datetime('create_date');
+            $table->datetime('due_date');
+            $table->decimal('tax')->nullable()->default('18');
             $table->decimal('total',12, 2);
-            $table->enum('status',['Por cobrar','Anulada','Cobrada'])->default('Por cobrar');
+            $table->enum('status',['Por cobrar','Anulada','Cobrada'])->default('Por cobrar');            
+            $table->string('invoice_code');
             $table->timestamps();
         });
     }
