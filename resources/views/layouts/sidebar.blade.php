@@ -39,21 +39,21 @@
                 <span class="text-sm">Facturas</span>
             </a>
 
-              {{-- <div class="px-4 py-2" x-data="{ open: false }">
-                  <p class="cursor-pointer text-sm" @click="open=!open">
-                      <i class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>
-                      <span class="">Test</span>
-                  </p>
+              <div class="px-4 py-2" x-data="{ open: false }">
+                  <a hrehref="{{ route('invoices.index') }}" class="cursor-pointer text-sm" @click="open=!open">
+                    <i class="fa-solid fa-arrow-trend-up" style="color: #8c8c8c;"></i>
+                      <span class="">Ingresos</span>
+                  </a>
                   <ul x-show=open class="flex flex-col py-2 pl-5 text-sm">
-                      <a href="" class="hover:bg-gray-100 p-1 flex gap-2 items-center"> <i
-                              class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>Ingresos</a>
-                      <a href="" class="hover:bg-gray-100 p-1 flex gap-2 items-center"> <i
-                              class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>Gastos</a>
+                      <a href="" class="hover:bg-gray-100 p-1 flex gap-2 items-center"> 
+                        <i class="fa-solid fa-ticket" style="color: #8c8c8c;"></i>Ventas</a>
+                      {{-- <a href="" class="hover:bg-gray-100 p-1 flex gap-2 items-center"> <i
+                              class="fa-solid fa-handshake" style="color: #8c8c8c;"></i>Gastos</a> --}}
                   </ul>
-              </div> --}}
+              </div>
 
 
-              <p class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
+              {{-- <p class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
                   <i class="fa-solid fa-arrow-trend-up" style="color: #8c8c8c;"></i>
                   <span class="text-sm">Ingresos</span>
               </p>
@@ -61,6 +61,6 @@
               <p class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
                   <i class="fa-solid fa-arrow-trend-down" style="color: #8c8c8c;"></i>
                   <span class="text-sm">Gastos</span>
-              </p>
+              </p> --}}
           </div>
       </div>

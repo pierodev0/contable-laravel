@@ -1,7 +1,6 @@
 <x-app-layout>
     <div class="mb-4">
-        <h1 class="text-2xl">Nuevo cliente</h1>
-        <h2>Crea los contactos que asociarás en tus documentos y transacciones de ingresos.</h2>
+        <h1 class="text-2xl">Actualizar cliente</h1>
       </div>
   <form
     action="{{ route('clients.update',$client) }}"
@@ -11,7 +10,7 @@
     @csrf
     @method('PUT')
     @include('clients._form', [
-            'btnText' => 'Actualizar',
+            'btnText' => 'Actualizar cliente',
         ])
   </form>
 </x-app-layout>

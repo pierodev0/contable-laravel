@@ -2,7 +2,7 @@
     <h1 class="font-bold text-3xl">JHARDSYSTEX</h1>
     <p class="font-bold">Factura electronica</p>
 </div>
-<div class="flex gap-4">   
+<div class="flex gap-4">
     <label class="flex flex-col gap-1  grow-[2]">
         <span class="">Cliente</span>
         <select name="client_id" class="py-0.5 px-2 rounded-md border-gray-500/50 w-full" id="client_id">
@@ -33,7 +33,8 @@
         <select name="" class="py-0.5 px-2 rounded-md border-gray-500/50 w-full" id="item_id1">
             <option value="" disabled selected>Selecccione un item</option>
             @foreach ($items as $item)
-                <option value="{{ $item->id }}" data-item="{{ $item->stock }}_{{ $item->sell_price }}">{{ $item->name }}</option>
+                <option value="{{ $item->id }}" data-item="{{ $item->stock }}_{{ $item->sell_price }}">
+                    {{ $item->name }}</option>
             @endforeach
         </select>
     </label>
@@ -52,7 +53,7 @@
     <button id="agregar"
         class="text-teal-500 bg-white border-2 border-teal-500 hover:bg-gray-100  py-2 px-6 rounded-md w-fit"> + Agregar
     </button>
-   
+
 </div>
 <table class="w-full table-auto">
     <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
@@ -101,7 +102,7 @@
             // console.log(selectedOption.data('item'))
             var productoData = selectedOption.data('item');
             var [stock, sell_price] = productoData.split('_');
-            console.log(stock,sell_price)
+            console.log(stock, sell_price)
             $('#price').val(sell_price);
             $('#stock').val(stock);
             $('#quantity').val(1);
@@ -116,6 +117,28 @@
             const quantity = +$("#quantity").val();
             const price = +$("#price").val();
             impuesto = +$("#tax").val();
+
+            if (!item_id) {
+                Swal.fire({
+                    icon: "error",
+                    text: "Por favor, seleccione un item",
+                });
+                return
+            };
+            if (!price) {
+                Swal.fire({
+                    icon: "error",
+                    text: "El campo de precio está vacío o contiene un valor de 0. Por favor, ingresa un dato válido",
+                });
+                return
+            };
+            if (!quantity) {
+                Swal.fire({
+                    icon: "error",
+                    text: "El campo de cantidad está vacío o contiene un valor de 0. Por favor, ingresa un dato válido",
+                });
+                return
+            };
 
             subtotal[cont] = quantity * price;
             total = total + subtotal[cont];
@@ -148,6 +171,7 @@
         }
 
         function limpiar() {
+            $("#item_id1").prop("selectedIndex", 0);
             $("#quantity").val("");
             $("#price").val("");
         }
@@ -172,7 +196,7 @@
             $("#total_html").html("S/" + total_pagar_html);
             $("#total_pagar").val(total_pagar_html.toFixed(2));
             $("#fila-" + index).remove();
-             evaluar();
+            evaluar();
         }
 
         function evaluar() {
@@ -183,7 +207,7 @@
             }
         }
 
-        function getImpuesto(){
+        function getImpuesto() {
             impuesto = +$("#tax").val();
             totales();
         }

@@ -18,7 +18,10 @@
       value="{{ old('name',$account->name) }}"
     >
   </div>
+  <div class="flex flex-col">
+    <label for="type">Tipo de cuenta</label>
   <select
+  id="type"
     name="type"
     class="w-full rounded-md"
   >
@@ -26,6 +29,7 @@
     <option value="Tarjeta de credito">Tarjeta de crédito</option>
     <option value="Efectivo">Efectivo</option>
   </select>
+  </div>
   <div class="flex flex-col">
     <label for="number">Numero de cuenta</label>
     <input

@@ -9,22 +9,22 @@
     </div>
   @endif
   <div class="flex flex-col">
-    <label for="number">Número (RUC, DNI, Etc.) </label>
+    <label for="ruc">Número de RUC </label>
     <input
       type="text"
-      id="number"
-      name="number"
+      id="ruc"
+      name="ruc"
       class="rounded-md"
-      value="{{ old('number',$client->number) }}"
+      value="{{ old('ruc',$client->ruc) }}"
     >
   </div>
-  <select
+  {{-- <select
     name="type"
     class="w-full rounded-md"
   >
     <option value="DNI">DNI</option>
     <option value="RUC">RUC</option>
-  </select>
+  </select> --}}
   <div class="flex flex-col">
     <label for="name">Nombre Completo o razon social</label>
     <input
@@ -43,6 +43,26 @@
       name="phone"
       class="rounded-md"
       value="{{ old('phone',$client->phone) }}"
+    >
+  </div>
+  <div class="flex flex-col">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="rounded-md"
+      value="{{ old('email',$client->email) }}"
+    >
+  </div>
+  <div class="flex flex-col">
+    <label for="direction">Direccion</label>
+    <input
+      type="text"
+      id="direction"
+      name="direction"
+      class="rounded-md"
+      value="{{ old('direction',$client->direction) }}"
     >
   </div>
 </div>

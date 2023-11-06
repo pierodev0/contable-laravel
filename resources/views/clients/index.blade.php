@@ -12,7 +12,7 @@
         <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
             <tr class="text-left">
                 <th class="p-3 text-blue-900">Razon social o nombre completo</th>
-                <th class="p-3 text-blue-900">Identificacion</th>
+                <th class="p-3 text-blue-900">RUC</th>
                 <th class="p-3 text-blue-900">Telefono</th>
                 <th class="p-3 text-blue-900">Acciones</th>
             </tr>
@@ -21,7 +21,7 @@
             @forelse ($clients as $client)
                 <tr class="hover:bg-gray-200">
                     <td class="p-3">{{ $client->name }}</td>
-                    <td class="p-3">{{ $client->dni }}</td>
+                    <td class="p-3">{{ $client->ruc }}</td>
                     <td class="p-3">{{ $client->phone }}</td>
                     <td class="flex gap-5 p-3">
                         <a href="{{ route('clients.edit', $client) }}"><i class="fa-solid fa-pencil"

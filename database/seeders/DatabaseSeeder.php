@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
         ]);
 
-        Client::factory(20)->create();
+        Client::factory(10)->create();
         Movement::factory(10)->create();
     }
 }
