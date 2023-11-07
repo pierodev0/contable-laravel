@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Movement\StoreRequest;
+use App\Http\Requests\Movement\UpdateRequest;
 use App\Models\Account;
 use App\Models\Invoice;
 use App\Models\Category;
 use App\Models\Movement;
-use App\Http\Requests\StoreMovementRequest;
-use App\Http\Requests\UpdateMovementRequest;
-
 class MovementController extends Controller
 {
     public function index()
@@ -30,7 +29,7 @@ class MovementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMovementRequest $request)
+    public function store(StoreRequest $request)
     {
         if($request->invoice_code){
             $invoice = Invoice::where('invoice_code', $request->invoice_code)->first();
@@ -69,7 +68,7 @@ class MovementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMovementRequest $request, Movement $movement)
+    public function update(UpdateRequest $request, Movement $movement)
     {
                   
         $movement->update($request->all());

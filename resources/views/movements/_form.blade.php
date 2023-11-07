@@ -23,10 +23,10 @@
     </div>
     @endif
     
-    <div class="flex flex-col">
+    {{-- <div class="flex flex-col">
         <label for="tax">Impuesto</label>
         <input type="number" id="tax" name="tax" class="rounded-md" value="{{ old('tax', $movement->tax) }}">
-    </div>
+    </div> --}}
     <div>
         <label for="type">Categorias</label>
         <select id="category_id" name="category_id" class="w-full rounded-md">
@@ -39,13 +39,13 @@
     <div>
         <label for="type">Cuentas</label>
         <select id="account" name="account_id" class="w-full rounded-md">
-            <option>--Seleccione una opcion --</option>
+            <option value="">--Seleccione una opcion --</option>
             @foreach ($accounts as $account)
                 <option data-total={{ $account->amount }} value="{{ $account->id }}" {{ $movement->account_id == $account->id ? 'selected' : '' }}>
                     {{ $account->name }}</option>
             @endforeach
         </select>
-        <p>Saldo Actual: <span id="total"></span></p>   
+        <p class="p-2">Saldo Actual: <span id="total"></span></p>   
     <button class="w-full rounded-md bg-green-400 px-6 py-2 text-white">{{ $btnText }}</button>
     @if ($invoice != null)
     <table class="w-full table-auto">

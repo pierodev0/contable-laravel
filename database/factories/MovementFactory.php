@@ -21,7 +21,7 @@ class MovementFactory extends Factory
         return [
             'type' => $faker->randomElement(['add', 'out']),
             'amount' => $faker->randomFloat(2, 1, 1000),
-            'tax' => $faker->randomFloat(2, 0, 100),
+            // 'tax' => $faker->randomFloat(2, 0, 100),
             'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
             'account_id' => \App\Models\Account::inRandomOrder()->first()->id,
             'date' => $faker->dateTimeBetween('-1 year', 'now'),
