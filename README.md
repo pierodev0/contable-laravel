@@ -11,7 +11,15 @@
 
 Sistema contabla para optimizar la gestion financiera
 
-
+## Capturas del proyecto
+#### Modulo de clientes
+![Descripción de la imagen](/public/readme/clientes.png)
+#### Movimientos
+![Descripción de la imagen](/public/readme/movimientos.png)
+#### Bancos
+![Descripción de la imagen](/public/readme/bancos.png)
+#### Factura
+![Descripción de la imagen](/public/readme/factura.png)
 
 ## Instalar el proyecto
 - Copiar este repositorio 
