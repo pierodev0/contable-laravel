@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Account\StoreRequest;
 use App\Models\Account;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class AccountController extends Controller
         $total = $accounts->sum('amount');
         $latestUpdate = Account::orderBy('updated_at', 'desc')->first()->updated_at->format('Y-m-d');
 
-        return view('accounts.index',compact('accounts','total','latestUpdate'));
+        return view('accounts.index', compact('accounts', 'total', 'latestUpdate'));
     }
 
     /**
@@ -26,25 +27,24 @@ class AccountController extends Controller
     {
 
 
-        return view('accounts.create',[
-
-        ]);
+        return view('accounts.create', []);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'type' => 'required',
-            'number' => 'required',
-            'amount' => 'required',
-        ]);
+
 
         $request->request->add(['user_id' => auth()->user()->id]);
-        Account::create($request->all());
+        $all = $request->all();
+
+        if (is_null($request->get('amount'))) {
+            unset($all['amount']);
+        }
+
+        Account::create($all);
 
         return redirect()->route('accounts.index');
     }
@@ -54,8 +54,8 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-       
-        return view('accounts.show',compact('account'));
+
+        return view('accounts.show', compact('account'));
     }
 
     /**
@@ -63,8 +63,8 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        return view('accounts.edit',[
-            "account"=>$account
+        return view('accounts.edit', [
+            "account" => $account
         ]);
     }
 
@@ -77,12 +77,12 @@ class AccountController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'type' => 'required',
-            'number' => 'nullable|unique:accounts,type,'. $account->id
+            'number' => 'nullable|unique:accounts,type,' . $account->id
         ]);
 
         $account->update($request->all());
 
-        return redirect()->route('accounts.index')->with('updated','Cuenta actualizada');
+        return redirect()->route('accounts.index')->with('updated', 'Cuenta actualizada');
     }
 
     /**
@@ -91,6 +91,6 @@ class AccountController extends Controller
     public function destroy(Account $account)
     {
         $account->delete();
-        return redirect()->route('accounts.index')->with('success','ok');
+        return redirect()->route('accounts.index')->with('success', 'ok');
     }
 }

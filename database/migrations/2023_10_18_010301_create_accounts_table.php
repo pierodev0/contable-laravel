@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('type', ['Banco nacional', 'Tarjeta de credito', 'Efectivo']);
             $table->string('number')->nullable()->unique();
-            $table->decimal('amount', 10, 2);
+            $table->decimal('amount', 10, 2)->default(0.00);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -8,7 +8,7 @@
   <section class="mb-4">
     <div class="bg-white p-3 shadow-md">
       <p>Saldo en {{ $account->name }}</p>
-      <p class="text-3xl font-bold {{ intval($account->amount) > 0 ? 'text-teal-500' : 'text-red-400' }}">S./ {{ $account->amount }}</p>
+      <p class="text-3xl font-bold {{ intval($account->amount) >= 0 ? 'text-teal-500' : 'text-red-400' }}">S./ {{ $account->amount }}</p>
     </div>
   </section> 
   <table class="w-full table-auto">
