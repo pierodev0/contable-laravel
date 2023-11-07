@@ -15,7 +15,7 @@ Sistema contabla para optimizar la gestion financiera
 
 ## Instalar el proyecto
 - Copiar este repositorio 
-```json
+```
 git clone https://github.com/pierodev0/contable-laravel.git
 ```
 - Instalar las dependencias de composer
