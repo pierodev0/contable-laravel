@@ -13,8 +13,12 @@ class MovementController extends Controller
     public function index()
     {
     
+        $incomes  = Movement::where('type', 'add')->sum('amount');
+        $expenses  = Movement::where('type', 'out')->sum('amount');
+        
+        
         $movements = Movement::orderBy('id', 'desc')->get();
-        return view('movements.index',compact('movements'));
+        return view('movements.index',compact('movements','incomes','expenses'));
     }
 
     /**

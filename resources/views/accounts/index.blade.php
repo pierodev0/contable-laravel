@@ -32,7 +32,7 @@
           <td class="p-3">{{ $account->name }}</td>
           <td class="p-3">{{ $account->type }}</td>
           <td class="p-3">{{ $account->number }}</td>
-          <td class="p-3 {{ intval($account->amount) > 0 ? 'text-green-400' : 'text-red-400'  }}">S/ {{ $account->amount }}</td>
+          <td class="p-3 {{ intval($account->amount) > 0 ? 'text-teal-500' : 'text-red-400'  }}">S/ {{ $account->amount }}</td>
           <td class="flex gap-5 p-3">
             <a href="{{ route('accounts.show',$account) }}"><i
               class="fa-solid fa-eye"

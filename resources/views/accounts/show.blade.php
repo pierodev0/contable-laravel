@@ -3,8 +3,14 @@
     <div class="">
       <h1 class="text-3xl">Movimientos de {{ $account->name }}</h1>
       {{-- <h2>Controla tus movimientos de dinero con tus cuentas de banco, efectivo y tarjetas de crédito.</h2> --}}
-    </div>    
+    </div>       
   </div>
+  <section class="mb-4">
+    <div class="bg-white p-3 shadow-md">
+      <p>Saldo en {{ $account->name }}</p>
+      <p class="text-3xl font-bold {{ intval($account->amount) > 0 ? 'text-teal-500' : 'text-red-400' }}">S./ {{ $account->amount }}</p>
+    </div>
+  </section> 
   <table class="w-full table-auto">
     <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
       <tr class="text-left">
@@ -21,7 +27,7 @@
         <tr class="hover:bg-gray-200">
           <td class="p-3">{{ $movement->id }}</td>
           <td class="p-3">{{ $movement->updated_at }}</td>
-          <td class="p-3 {{ $movement->type ===  'add' ? 'text-green-400' : 'text-red-400' }}">{{ $movement->type ===  'add' ? 'Ingreso' : 'Egreso' }}</td>
+          <td class="p-3 {{ $movement->type ===  'add' ? 'text-teal-500' : 'text-red-400' }}">{{ $movement->type ===  'add' ? 'Ingreso' : 'Egreso' }}</td>
           <td class="p-3">S/ {{ $movement->amount }}</td>
           <td class="p-3">{{ $movement->category->name ?? $movement->invoice->invoice_code }}</td>
           <td class="flex gap-5 p-3">
