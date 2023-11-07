@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('type', ['add', 'out']);
             $table->decimal('amount');
             // $table->decimal('tax')->nullable();           
-            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('date')->nullable();   
             $table->string('invoice_code')->nullable();

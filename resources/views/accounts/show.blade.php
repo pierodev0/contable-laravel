@@ -12,7 +12,7 @@
         <th class="p-3 text-blue-900">Fecha de creacion</th>
         <th class="p-3 text-blue-900">Tipo</th>
         <th class="p-3 text-blue-900">Monto</th>
-        <th class="p-3 text-blue-900">Impuesto</th>
+        <th class="p-3 text-blue-900">Referencia</th>
         <th class="p-3 text-blue-900">Acciones</th>
       </tr>
     </thead>
@@ -23,7 +23,7 @@
           <td class="p-3">{{ $movement->updated_at }}</td>
           <td class="p-3 {{ $movement->type ===  'add' ? 'text-green-400' : 'text-red-400' }}">{{ $movement->type ===  'add' ? 'Ingreso' : 'Egreso' }}</td>
           <td class="p-3">S/ {{ $movement->amount }}</td>
-          <td class="p-3">S/ {{ $movement->tax }}</td>
+          <td class="p-3">{{ $movement->category->name ?? $movement->invoice->invoice_code }}</td>
           <td class="flex gap-5 p-3">
             <a href="{{ route('movements.show',$movement) }}"><i
               class="fa-solid fa-eye"

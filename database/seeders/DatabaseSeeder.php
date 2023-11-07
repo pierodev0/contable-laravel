@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::create([
             'name' => 'Admin',
-            'email' => 'cliente@gmail.com',
+            'email' => 'admin@admin.com',
             'password' => bcrypt('12345678')
         ]);
 
@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Client::factory(10)->create();
-        Movement::factory(10)->create();
+        Movement::factory(5)->create();
     }
 }

@@ -12,6 +12,7 @@ class MovementController extends Controller
 {
     public function index()
     {
+    
         $movements = Movement::orderBy('id', 'desc')->get();
         return view('movements.index',compact('movements'));
     }
@@ -81,6 +82,14 @@ class MovementController extends Controller
      */
     public function destroy(Movement $movement)
     {
+        if($movement->invoice != null){
+           
+
+            if($movement->invoice->status == "Cobrada"){
+                $movement->invoice->status = "Por cobrar";        
+                $movement->invoice->update();   
+            }
+        }
         $movement->delete();
         return redirect()->route('movements.index')->with('success','ok');
     }

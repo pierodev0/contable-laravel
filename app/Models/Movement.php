@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Movement extends Model
 {
@@ -18,6 +19,12 @@ class Movement extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // Relacion uno a uno con invoice
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class, 'invoice_code', 'invoice_code');
     }
 
     protected static function booted()

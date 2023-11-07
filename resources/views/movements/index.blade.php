@@ -16,7 +16,7 @@
                 <th class="p-3 text-blue-900">Tipo</th>
                 <th class="p-3 text-blue-900">Monto</th>
                 <th class="p-3 text-blue-900">Cuenta</th>
-                <th class="p-3 text-blue-900">Categoria</th>
+                <th class="p-3 text-blue-900">Referencia</th>
                 <th class="p-3 text-blue-900">Acciones</th>
             </tr>
         </thead>
@@ -25,10 +25,15 @@
                 <tr class="hover:bg-gray-200">
                     <td class="p-3">{{ $movement->id }}</td>
                     <td class="p-3">{{ $movement->updated_at }}</td>
-                    <td class="p-3 {{ $movement->type ===  'add' ? 'text-green-400' : 'text-red-400' }}">{{ $movement->type ===  'add' ? 'Ingreso' : 'Egreso' }}</td>
+                    <td class="p-3 {{ $movement->type === 'add' ? 'text-green-400' : 'text-red-400' }}">
+                        {{ $movement->type === 'add' ? 'Ingreso' : 'Egreso' }}</td>
                     <td class="p-3">{{ $movement->amount }}</td>
                     <td class="p-3">{{ $movement->account->name }}</td>
-                    <td class="p-3">{{ $movement->category->name }}</td>
+                    @if ($movement->category?->name)
+                        <td class="p-3">{{ $movement->category->name }}</td>
+                    @else
+                        <td class="p-3"><a class="hover:underline" href="{{ route('invoices.show',$movement->invoice) }}">{{ $movement->invoice->invoice_code }}</a></td>
+                    @endif
                     <td class="flex gap-5 p-3">
                         <a href="{{ route('movements.edit', $movement) }}"><i class="fa-solid fa-pencil"
                                 style="color: #878787;"></i></a>

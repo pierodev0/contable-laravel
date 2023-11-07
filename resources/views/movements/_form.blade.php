@@ -8,6 +8,10 @@
             </ul>
         </div>
     @endif   
+    @if ($invoice != null)
+        <input type="hidden" name="type" value="add">
+    @endif
+    @if ($invoice == null)
     <div>
         <label for="type">Tipo de movimiento</label>
         <select id="type" name="type" class="w-full rounded-md">
@@ -15,13 +19,12 @@
             <option value="out" {{ $movement->type == 'out' ? 'selected' : '' }}>Egresos</option>
         </select>
     </div>
-    @if ($invoice == null)
+    
     <div class="flex flex-col">
         <label for="amount">Monto</label>
         <input type="number" id="amount" name="amount" class="rounded-md"
             value="{{ old('amount', $movement->amount) }}">
-    </div>
-    @endif
+    </div>   
     
     {{-- <div class="flex flex-col">
         <label for="tax">Impuesto</label>
@@ -36,6 +39,7 @@
             @endforeach
         </select>
     </div>
+    @endif
     <div>
         <label for="type">Cuentas</label>
         <select id="account" name="account_id" class="w-full rounded-md">
@@ -46,7 +50,7 @@
             @endforeach
         </select>
         <p class="p-2">Saldo Actual: <span id="total"></span></p>   
-    <button class="w-full rounded-md bg-green-400 px-6 py-2 text-white">{{ $btnText }}</button>
+  
     @if ($invoice != null)
     <table class="w-full table-auto">
         <thead class="bg-gray-50 text-xs font-semibold text-gray-400">
@@ -69,7 +73,7 @@
                
                 <tr class="hover:bg-gray-200">
                     <td class="p-3">{{ $invoice->invoice_code }}<input type="hidden" value="{{ $invoice->invoice_code }}" name="invoice_code"></td>
-                    <td class="p-3">{{ $invoice->invoice_date }}</td>
+                    <td class="p-3">{{ formatDate($invoice->create_date) }}</td>
                     <td class="p-3">{{ $invoice->client->name }}</td>
                     <input type="hidden" value="{{ $invoice->total }}" name="amount">
                     <td class="p-3">{{ $invoice->total }}</td>
@@ -87,6 +91,7 @@
         </tbody>
     </table>
     @endif
+    <button class="w-full rounded-md mt-5 bg-green-400 px-6 py-2 text-white">{{ $btnText }}</button>
 @push('script')
 
 <script>
