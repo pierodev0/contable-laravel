@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientAjaxController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ItemController;
@@ -46,5 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/items', ItemController::class);
     Route::resource('/invoices', InvoiceController::class);
+
+    // Api sunat ajax
+    Route::get('clients/ajax/{ruc}',ClientAjaxController::class);
 });
 require __DIR__ . '/auth.php';
