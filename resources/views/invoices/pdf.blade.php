@@ -3,34 +3,23 @@
   $color['Anulada'] = "text-blue-800";
   $color['Cobrada'] = "text-teal-500";
 @endphp
-<x-app-layout>
-  <h1 class="text-3xl mb-2 text-teal-800"> Factura de venta {{ $invoice->invoice_code }}</h1>
-  <div class="mb-2">
-    <a href="{{ route('invoices.pdf',$invoice) }}" class="border text-sm border-teal-700 text-teal-700 py-0.5 px-5 rounded bg-white"><i class="fa-solid fa-print"></i> Imprimir</a>
-    @if ($invoice->status == "Por cobrar")
-    <a href="{{ route('movements.create',$invoice) }}" class="border text-sm border-teal-700 text-teal-700 py-0.5 px-5 rounded bg-white"><i class="fa-solid fa-plus"></i> Agregar pago</a>
-    @endif   
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <section class="shadow-md mb-4 flex divide-x-2">
-      <div class="bg-white py-4 px-8 text-center flex-1">
-        <p class="text-sm">Estado</p>
-        <p class="font-bold {{ $color[$invoice->status] }}">{{ $invoice->status }}</p>
-      </div>
-      <div class="bg-white py-4 px-8 text-center flex-1">
-        <p class="text-sm">Valor total</p>
-        <p class="font-bold">S/{{ $invoice->total }}</p>
-      </div>      
-      <div class="bg-white py-4 px-8 text-center flex-1">
-        <p class="text-sm">Cobrado</p>
-        <p class="font-bold text-teal-500">S/ {{ $invoice->status == "Cobrada" ? $invoice->total : 0 }}</p>
-      </div>
-      <div class="bg-white py-4 px-8 text-center flex-1">
-        <p class="text-sm">Por cobrar</p>
-        <p class="font-bold text-red-400">S/{{ $invoice->status == "Por cobrar" ? $invoice->total : 0 }}</p>
-      </div>
-    </section>
-    <div class="bg-white p-6 rounded-lg shadow-lg space-y-5 relative">  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+  <!-- Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+<body>
+  
+    <div class="bg-white p-6 rounded-lg space-y-5 relative">  
         <div class="{{ $invoice->status == "Anulada" ? 'absolute inset-0 bg-white z-10 opacity-60' : '' }}"></div>      
         <div class="mr-auto flex w-full flex-col gap-2 rounded-xl bg-white">
             <div class="flex justify-between">
@@ -106,4 +95,5 @@
         </div>
     </div>
 
-</x-app-layout>
+  </body>
+  </html>

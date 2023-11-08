@@ -7,8 +7,10 @@ use App\Models\Item;
 use App\Models\Client;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Spatie\Browsershot\Browsershot;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use Illuminate\Support\Facades\File;
 
 
 class InvoiceController extends Controller
@@ -19,7 +21,7 @@ class InvoiceController extends Controller
     public function index()
     {
         $invoices = Invoice::orderBy('id', 'desc')->get();
-        return view('invoices.index',compact('invoices'));
+        return view('invoices.index', compact('invoices'));
     }
 
     /**
@@ -27,19 +29,17 @@ class InvoiceController extends Controller
      */
     public function create(Request $request)
     {
-        
+
         $items = Item::all();
         $clients = Client::all();
 
-        if($request->ajax()){
-             return response()->json([
+        if ($request->ajax()) {
+            return response()->json([
                 'items' => $items
             ]);
         }
-        
-        return view('invoices.create',compact('items','clients'));
 
-
+        return view('invoices.create', compact('items', 'clients'));
     }
 
     /**
@@ -49,8 +49,8 @@ class InvoiceController extends Controller
     {
 
         $invoice = Invoice::create($request->all());
-       
-       
+
+
         foreach ($request->item_id as $key => $item) {
             $results[] = [
                 "item_id" => $request->item_id[$key],
@@ -69,13 +69,38 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $subtotal = 0 ;
+        $subtotal = 0;
         $invoiceDetails = $invoice->invoiceDetails;
         foreach ($invoiceDetails as $invoiceDetail) {
-            $subtotal += $invoiceDetail->quantity*$invoiceDetail->price;
+            $subtotal += $invoiceDetail->quantity * $invoiceDetail->price;
         }
-        return view('invoices.show', compact('invoice','invoiceDetails','subtotal'));
+        return view('invoices.show', compact('invoice', 'invoiceDetails', 'subtotal'));
     }
+
+
+    public function pdf(Invoice $invoice)
+    {
+        $subtotal = 0;
+        $invoiceDetails = $invoice->invoiceDetails;
+        foreach ($invoiceDetails as $invoiceDetail) {
+            $subtotal += $invoiceDetail->quantity * $invoiceDetail->price;
+        }
+
+        $view =  view('invoices.pdf', compact('invoice', 'invoiceDetails', 'subtotal'))->render();
+        $path = public_path("pdf_temp/");
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0755, true);
+        }
+
+        Browsershot::html($view)
+            ->margins(10, 10, 10, 10)
+            ->format('A4')
+            ->landscape()
+            ->savePdf("$path{$invoice->invoice_code}.pdf");
+        return response()->download("$path{$invoice->invoice_code}.pdf", "Factura-{$invoice->invoice_code}.pdf");
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -98,12 +123,12 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-       
+
         if ($invoice->status == 'Por cobrar') {
-            $invoice->update(['status'=>'Anulada']);
-            return redirect()->back()->with('success','Factura anulada');
+            $invoice->update(['status' => 'Anulada']);
+            return redirect()->back()->with('success', 'Factura anulada');
         }
-        
+
         return redirect()->back();
     }
 }
