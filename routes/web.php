@@ -50,5 +50,8 @@ Route::middleware('auth')->group(function () {
 
     // Api sunat ajax
     Route::get('clients/ajax/{ruc}',ClientAjaxController::class);
+
+
+   Route::get('invoices/pdf/{invoice}', [InvoiceController::class,'pdf'])->name('invoices.pdf');
 });
 require __DIR__ . '/auth.php';
