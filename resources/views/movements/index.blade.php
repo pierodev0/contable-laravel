@@ -37,7 +37,7 @@
             @forelse ($movements as $movement)
                 <tr class="hover:bg-gray-200">
                     <td class="p-3">{{ $movement->id }}</td>
-                    <td class="p-3">{{ $movement->updated_at }}</td>
+                    <td class="p-3">{{ $movement->created_at }}</td>
                     <td class="p-3 {{ $movement->type === 'add' ? 'text-teal-500' : 'text-red-400' }}">
                         {{ $movement->type === 'add' ? 'Ingreso' : 'Egreso' }}</td>
                     <td class="p-3">{{ $movement->amount }}</td>

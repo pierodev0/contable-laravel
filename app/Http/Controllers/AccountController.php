@@ -15,7 +15,12 @@ class AccountController extends Controller
     {
         $accounts = Account::all();
         $total = $accounts->sum('amount');
-        $latestUpdate = Account::orderBy('updated_at', 'desc')->first()->updated_at->format('Y-m-d');
+        $latestUpdate = null;
+        if(!$accounts->isEmpty()){
+
+            $latestUpdate = Account::orderBy('updated_at', 'desc')->first()->updated_at->format('Y-m-d');
+        }
+        
 
         return view('accounts.index', compact('accounts', 'total', 'latestUpdate'));
     }

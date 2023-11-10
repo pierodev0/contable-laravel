@@ -12,7 +12,7 @@
   <section class="mb-4">
     <div class="bg-white p-3 shadow-md">
       <p>Saldo en banco y efectivo</p>
-      <p class="text-3xl font-bold {{ intval($total) > 0 ? 'text-teal-500' : 'text-red-400' }}">S./ {{ $total }}</p>
+      <p class="text-3xl font-bold {{ intval($total) >= 0 ? 'text-teal-500' : 'text-red-400' }}">S./ {{ $total }}</p>
         <p class="text-teal-500"> Última actualización <span class="font-bold">{{ $latestUpdate }}</span></p>
     </div>
   </section>

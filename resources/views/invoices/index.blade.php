@@ -40,8 +40,8 @@
                         style="color: #878787;"></i></a>
                     
                     @if ($invoice->status == 'Por cobrar')                              
-                           <a href="{{ route('invoices.edit', $invoice) }}"><i class="fa-solid fa-pencil"
-                              style="color: #878787;"></i></a>
+                           {{-- <a href="{{ route('invoices.edit', $invoice) }}"><i class="fa-solid fa-pencil"
+                              style="color: #878787;"></i></a> --}}
                     @endif
                       <form class="formDelete" action="{{ route('invoices.destroy', $invoice) }}" method="POST">
                           @csrf
