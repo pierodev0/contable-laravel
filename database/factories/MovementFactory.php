@@ -25,6 +25,7 @@ class MovementFactory extends Factory
             'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
             'account_id' => \App\Models\Account::inRandomOrder()->first()->id,
             'date' => $faker->dateTimeBetween('-1 year', 'now'),
+            'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }
