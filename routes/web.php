@@ -9,6 +9,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -31,6 +32,9 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth','role:admin')->group(function () {
+    Route::resource('/users', UserController::class);
+});
 Route::middleware('auth')->group(function () {
     Route::get("/",[DashboardController::class,'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -50,6 +54,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/items', ItemController::class);
     Route::resource('/invoices', InvoiceController::class);
+    
+    
 
     // Api sunat ajax
     Route::get('clients/ajax/{ruc}',ClientAjaxController::class);
