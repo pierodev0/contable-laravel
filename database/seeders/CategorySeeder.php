@@ -23,19 +23,19 @@ class CategorySeeder extends Seeder
                 'type' => 'add'
             ],
             [
-                'name' => 'Pago de reservación de tour',
+                'name' => 'Ingresos de actividades ordinarias',
                 'type' => 'add'
             ],
             [
-                'name' => 'Reservaciones de hoteles',
+                'name' => 'Ventas',
                 'type' => 'add'
             ],
             [
-                'name' => 'Reservaciones de vuelos',
+                'name' => 'Ingresos financieros',
                 'type' => 'add'
             ],
             [
-                'name' => 'Venta de articulos de viaje',
+                'name' => 'Ganancia por diferencia de cambio',
                 'type' => 'add'
             ],
             [
@@ -43,7 +43,7 @@ class CategorySeeder extends Seeder
                 'type' => 'add'
             ],
             [
-                'name' => 'Reembolsos',
+                'name' => 'Gasto de administracion',
                 'type' => 'out'
             ],
             [
