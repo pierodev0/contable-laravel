@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:admin')->only('create','edit','destroy');
+    }
     /**
      * Display a listing of the resource.
      */

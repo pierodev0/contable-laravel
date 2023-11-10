@@ -38,6 +38,13 @@
                 <i class="fa-solid fa-ticket" style="color: #8c8c8c;"></i>
                 <span class="text-sm">Facturas</span>
             </a>
+            @role('admin')
+            <a href="{{ route('users.index') }}"
+                class="flex items-center gap-2 rounded-sm px-4 py-2 hover:cursor-pointer hover:bg-gray-100">
+                <i class="fa-solid fa-user" style="color: #8c8c8c;"></i>
+                <span class="text-sm">Usuarios</span>
+            </a>
+            @endrole
 
               {{-- <div class="px-4 py-2" x-data="{ open: false }">
                   <a hrehref="{{ route('invoices.index') }}" class="cursor-pointer text-sm" @click="open=!open">

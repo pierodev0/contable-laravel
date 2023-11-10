@@ -4,10 +4,13 @@
       <h1 class="text-3xl">Bancos</h1>
       <h2>Controla tus movimientos de dinero con tus cuentas de banco, efectivo y tarjetas de crédito.</h2>
     </div>
+    @role('admin')
     <a
       href="{{ route('accounts.create') }}"
       class="rounded-md bg-green-400 px-6 py-2 text-white hover:bg-green-700"
-    >Agregar Banco</a>
+    >Agregar Banco
+    @endrole
+  </a>
   </div>
   <section class="mb-4">
     <div class="bg-white p-3 shadow-md">
@@ -38,10 +41,12 @@
               class="fa-solid fa-eye"
               style="color: #878787;"
             ></i></a>
+            @role('admin')
             <a href="{{ route('accounts.edit',$account) }}"><i
                 class="fa-solid fa-pencil"
                 style="color: #878787;"
-              ></i></a>
+              ></i></a>             
+              
             <form
               class="formDelete"
               action="{{ route('accounts.destroy', $account) }}"
@@ -54,6 +59,7 @@
                   style="color: #878787;"
                 ></i></button>
             </form>
+            @endrole
           </td>
         </tr>
       @empty
