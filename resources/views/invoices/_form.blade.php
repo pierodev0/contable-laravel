@@ -125,14 +125,14 @@
                 });
                 return
             };
-            if (!price) {
+            if (!price || price <= 0) {
                 Swal.fire({
                     icon: "error",
                     text: "El campo de precio está vacío o contiene un valor de 0. Por favor, ingresa un dato válido",
                 });
                 return
             };
-            if (!quantity) {
+            if (!quantity || quantity <= 0) {
                 Swal.fire({
                     icon: "error",
                     text: "El campo de cantidad está vacío o contiene un valor de 0. Por favor, ingresa un dato válido",

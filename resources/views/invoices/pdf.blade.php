@@ -20,7 +20,6 @@
 <body>
   
     <div class="bg-white p-6 rounded-lg space-y-5 relative">  
-        <div class="{{ $invoice->status == "Anulada" ? 'absolute inset-0 bg-white z-10 opacity-60' : '' }}"></div>      
         <div class="mr-auto flex w-full flex-col gap-2 rounded-xl bg-white">
             <div class="flex justify-between">
                 <div class="flex flex-col justify-center">
