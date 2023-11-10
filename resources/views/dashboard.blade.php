@@ -1,4 +1,5 @@
 <x-app-layout>
+    <h1 class="text-3xl">Dashboard</h1>
     <div class="flex gap-10">
         <div class="chart-container" style="width:50%">
             <canvas id="chartIncomes"></canvas>
